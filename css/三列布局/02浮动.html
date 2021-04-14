@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./01.css">
+  <style>
+    .container {
+      position: relative;
+
+    }
+
+    .left {
+      float: left;
+      width: 20rem;
+      background-color: rgba(128, 128, 128, 0.349);
+    }
+
+    .center {
+      margin-left: 20rem;
+      margin-right: 20rem;
+      min-width: 20rem;
+      background-color: rgba(255, 125, 125, 0.308);
+      height: 20rem;
+    }
+
+    .right {
+      float: right;
+      margin-top: -20rem;
+      width: 20rem;
+      background-color: rgba(112, 255, 255, 0.253);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      Array构造器用于创建一个新的数组。通常，我们推荐使用对象字面量创建数组，这是一个好习惯，但是总有对象字面量乏力的时候，比如说，我想创建一个长度为8的空数组。请比较如下两种方式：
+      <br>
+      // 使用Array构造器
+      <br>
+      var a = Array(8); // [undefined × 8]
+      <br>
+      // 使用对象字面量
+      <br>
+      var b = [];
+      <br>
+      b.length = 8; // [undefined × 8]复制代码
+      <br>
+      Array构造器明显要简洁一些，当然你也许会说，对象字面量也不错啊，那么我保持沉默。
+    </div>
+    <div class="center">
+      Array构造器根据参数长度的不同，有如下两种不同的处理：
+      <br>
+      new Array(arg1, arg2,…)，参数长度为0或长度大于等于2时，传入的参数将按照顺序依次成为新数组的第0至N项（参数长度为0时，返回空数组）。
+      <br>
+      new Array(len)，当len不是数值时，处理同上，返回一个只包含len元素一项的数组；当len为数值时，根据如下规范，len最大不能超过32位无符号整型，即需要小于2的32次方（len最大为Math.pow(2,32)
+      -1或-1>>>0），否则将抛出RangeError。
+    </div>
+    <div class="right">
+      如上，我使用了Array(8)而不是new Array(8)，这会有影响吗？实际上，并没有影响，这得益于Array构造器内部对this指针的判断，ELS5_HTML规范是这么说的：
+      <br>
+      When Array is called as a function rather than as a constructor, it creates and initialises a new Array object.
+      <br>
+      Thus the function call Array(…) is equivalent to the object creation expression new Array(…) with the same
+      arguments.
+    </div>
+  </div>
+</body>
+
+</html>
