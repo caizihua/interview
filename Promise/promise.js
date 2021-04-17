@@ -7,16 +7,20 @@ function Promise(executor) {
     if (_this.PromiseState !== "pending") return;
     _this.PromiseState = "fulfilled";
     _this.PromiseResult = data;
-    _this.callback.forEach((item) => {
-      item.onResolved(data);
+    setTimeout(() => {
+      _this.callbacks.forEach((item) => {
+        item.onResolved(data);
+      });
     });
   }
   function reject(data) {
     if (_this.PromiseState !== "pending") return;
     _this.PromiseState = "rejected";
     _this.PromiseResult = data;
-    _this.callbacks.forEach((item) => {
-      item.onRejected(data);
+    setTimeout(() => {
+      _this.callbacks.forEach((item) => {
+        item.onRejected(data);
+      });
     });
   }
   try {
@@ -57,10 +61,14 @@ Promise.prototype.then = function (onResolved, onRejected) {
       }
     }
     if (this.PromiseState === "fulfilled") {
-      callback(onResolved);
+      setTimeout(() => {
+        callback(onResolved);
+      });
     }
     if (this.PromiseState === "rejected") {
-      callback(onRejected);
+      setTimeout(() => {
+        callback(onRejected);
+      });
     }
     if (this.PromiseState === "pending") {
       this.callbacks.push({
@@ -120,14 +128,36 @@ Promise.all = function (promises) {
   });
 };
 
-let q = new Promise((res, rej) => {
-  res("OK");
-});
-q.then()
-  .then((v) => {
-    console.log(v);
-    throw "error";
-  })
-  .catch((r) => {
-    console.log(r);
+Promise.race = function (promises) {
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < promises.length; i++) {
+      promises[i].then(
+        (v) => {
+          resolve(v);
+        },
+        (r) => {
+          reject(r);
+        }
+      );
+    }
   });
+};
+
+let q = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("OK");
+  });
+});
+let q1 = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("OK1");
+  });
+});
+q1.then((v) => {
+  console.log(v);
+}).then((v) => {
+  console.log(v);
+});
+q.then((v) => {
+  console.log(v);
+});
