@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .farther {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .div {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      margin: 2px;
+      z-index: 100;
+    }
+
+    .div1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -25px;
+      margin-top: -25px;
+      width: 50px;
+      height: 50px;
+      background: yellow;
+      z-index: -1;
+    }
+
+    .div2 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      background: yellow;
+      z-index: -1;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    .div3 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: yellow;
+      z-index: -1;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="farther">
+    <div class="div">定宽高margin
+      <div class="div1"></div>
+    </div>
+    <div class="div">定宽高transform
+      <div class="div2"></div>
+    </div>
+    <div class="div">不定宽高
+      <div class="div3">123456</div>
+    </div>
+  </div>
+</body>
+
+</html>
