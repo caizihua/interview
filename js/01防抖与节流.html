@@ -17,7 +17,12 @@
   <script>
     var inp = document.querySelector("#inp")
     var but = document.querySelector("#but")
-
+    /* 实现原理
+    如果高频事件一直触发，并且定时器重新计时，那么可以直接重新定义定时器。
+    首先需要知道的是定时器的返回值，返回的是一个正整数，这个值可以通过clearTimeout来取消。
+    那么如果高频事件一直触发的话，那么返回的函数将会一直清除定时器，并重新定义定时器。
+    直到停止，并在规定时间后调用函数。
+    */
     function debounce(fn) {
       let timeout = null;
       return function () {
@@ -27,7 +32,13 @@
         }, 500);
       }
     }
-
+    /* 实现原理：
+    首先我们需要一个标志canRun来保证在我们设置的这段时间内函数不会触发。
+    最开始设置为true，表示需要调用定时器，为false时就不需要调用定时器。
+    当为true时，跳过判断函数，接着设置为false，执行定时器函数，
+    在这段时间内canRun都将是false，判断函数将生效，不能调用函数。
+    当定时器失效后，调用回调函数，重新设置值canRun为true表示需要调用定时器
+    */
     function throttle(fn) {
       let canRun = true;
       return function () {
@@ -36,7 +47,7 @@
         setTimeout(() => {
           fn.apply(this, arguments);
           canRun = true;
-        }, 500);
+        }, 1000);
       }
     }
 

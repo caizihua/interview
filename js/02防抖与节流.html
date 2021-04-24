@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+             或者说是如果高频事件一直被触发，那么在停止后一定时间内执行某函数 -->
+  <!-- 节流：高频事件触发时，n秒内只会执行一次，所以会稀释函数的执行频率 -->
+  <input type="text" name="" id="inp">
+  <button id="but">提交</button>
+  <script>
+    // 封装成函数
+    var inp = document.querySelector("#inp")
+    var but = document.querySelector("#but")
+
+    const debounce = function (fn, waiting = 1000, immediate = true) {
+      let timer, firstTime = immediate;
+
+      let _debounce = (...args) => {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        if (firstTime) {
+          firstTime = false;
+          fn.apply(fn, args)
+        } else {
+          timer = setTimeout(() => {
+            fn.apply(fn, args)
+          }, waiting)
+        }
+      }
+      _debounce.cancel = () => {
+        clearTimeout(timer);
+        timer = null;
+      }
+      return _debounce;
+    }
+
+    const throttle = (fn, waiting = 1000, options = {
+      firstTime: true,
+      endTime: false
+    }) => {
+      let perTime = new Date(0).getTime(),
+        timer;
+      console.log(waiting, options.firstTime);
+      let _throttle = (...args) => {
+        let newTime = new Date().getTime();
+        if (!options.firstTime) {
+          if (timer) return;
+          timer = setTimeout(() => {
+            fn.apply(fn, args);
+            timer = null;
+          }, waiting);
+        } else if (newTime - perTime > waiting) {
+          fn.apply(fn, args);
+          perTime = newTime;
+        } else if (options.endTime) {
+          timer = setTimeout(() => {
+            fn.apply(fn, args);
+            timer = null;
+          }, waiting)
+        }
+      }
+      _throttle.cancel = () => {
+        perTime = 0;
+        clearTimeout(timer);
+        timer = null;
+      }
+      return _throttle;
+    }
+
+    function debounceSuc() {
+      console.log("防抖成功");
+    }
+
+    function throttleSuc() {
+      console.log("节流成功");
+    }
+    but.addEventListener("click", debounce(debounceSuc))
+    inp.addEventListener("input", throttle(throttleSuc))
+  </script>
+</body>
+
+</html>
