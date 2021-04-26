@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #result {
+      width: 400px;
+      height: 150px;
+      border: solid 1px black
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">点击</button>
+  <p id="result"> </p>
+
+  <script>
+    const btn = document.querySelector("#btn");
+    const result = document.querySelector("#result");
+    window.addEventListener("keydown", function () {
+      const xhr = new XMLHttpRequest();
+      //设置响应体数据类型
+      xhr.responseType = "json"
+      xhr.open("GET", "http://localhost:3000/delay")
+      xhr.send();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            /* 手动对json进行转换
+            let str = JSON.parse(xhr.response); 
+            result.innerHTML = str.name;*/
+            // 设置了responseType可以自动对json进行转换
+            let str = xhr.response;
+            result.innerHTML = str.name;
+          } else {}
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
