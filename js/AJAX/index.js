@@ -26,6 +26,13 @@ app.all("/jsonServer", (req, res) => {
   res.send(str);
 });
 
+app.get("/delay", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  setTimeout(() => {
+    res.send("延时响应");
+  }, 1000);
+});
+
 app.listen(3000, () => {
   console.log("server is running at http://localhost:3000");
 });
