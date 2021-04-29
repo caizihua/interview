@@ -33,6 +33,13 @@ app.get("/delay", (req, res) => {
   }, 1000);
 });
 
+app.all("/axios", function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  const data = { name: "JACK" };
+  res.send(JSON.stringify(data));
+});
+
 app.listen(3000, () => {
   console.log("server is running at http://localhost:3000");
 });

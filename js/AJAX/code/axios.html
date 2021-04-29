@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+
+</head>
+
+<body>
+  <button>GET</button>
+  <button>POST</button>
+  <button>AJAX</button>
+  <script>
+    const btn = document.querySelectorAll("button");
+    axios.defaults.baseURL = "http://localhost:3000"
+    btn[0].onclick = function () {
+      axios.get('/axios', {
+        //url参数
+        params: {
+          id: 100,
+          vip: 7
+        },
+        //请求头信息
+        headers: {
+          name: "ROSE",
+          age: 17
+        }
+      }).then(value => {
+        console.log(value);
+      })
+    }
+    btn[1].onclick = function () {
+      axios.post('/axios', {
+        username: "admin",
+        password: "admin"
+      }, {
+        //url参数
+        params: {
+          id: 200,
+          vip: 14
+        },
+        //请求头信息
+        headers: {
+          name: "LINDA",
+          age: 20
+        },
+      }).then(value => {
+        console.log(value);
+      })
+    }
+
+    btn[2].onclick = function () {
+      axios({
+        url: '/axios',
+        method: "post",
+        params: {
+          vip: 10,
+          level: 30
+        },
+        headers: {
+          a: 100,
+          b: 200
+        },
+        data: {
+          username: "admin",
+          password: "admin"
+        }
+      }).then(res => {
+        console.log(res);
+        console.log(res.status);
+        console.log(res.statusText);
+        console.log(res.headers);
+        console.log(res.data);
+      })
+    }
+  </script>
+</body>
+
+</html>
