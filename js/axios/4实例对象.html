@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+  <button>GET</button>
+  <button>POST</button>
+  <button>PUT</button>
+  <button>DELETE</button>
+  <script>
+    const btn = document.querySelectorAll("button");
+    const getData = axios.create({
+      baseURL: "http://poetry.apiopen.top",
+      timeout: 2000
+    })
+
+    btn[0].onclick = function () {
+      getData.get("/getTime").then(v => {
+        const data = v.data
+        console.log(data.code);
+      })
+    }
+  </script>
+</body>
+
+</html>
