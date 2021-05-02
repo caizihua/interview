@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="content">
+    Hello Reg
+  </div>
+  <script>
+    let str = "markMark12312RoseRose21";
+    //1
+    //传统形式替换
+    let num = [...str].filter((a) => !Number.isNaN(parseInt(a)));
+    console.log(num.join(""));
+    //正则表达式替换
+    console.log(str.match(/\d/g).join(""));
+
+    //2
+    //字面量形式创建
+    let str1 = "a";
+    console.log(eval(`/${str1}/`).test(str));
+    //对象形式创建
+    let reg1 = new RegExp(str1, "g");
+    reg1.test(str);
+
+    //3
+    //实现输入内容将查找的字符高亮，支持正则
+    let con = prompt("请输入内容");
+    const cont = document.querySelector("div");
+    const reg2 = new RegExp(con, "g");
+    cont.innerHTML = cont.innerHTML.replace(reg2, search => {
+      return `<span style="color:red">${search}</span>`
+    })
+  </script>
+</body>
+
+</html>
