@@ -16,13 +16,13 @@
   <button>DELETE</button>
   <script>
     const btn = document.querySelectorAll("button");
-    const getData = axios.create({
+    const axiosGetData = axios.create({
       baseURL: "http://poetry.apiopen.top",
       timeout: 2000
     })
 
     btn[0].onclick = function () {
-      getData.get("/getTime").then(v => {
+      axiosGetData.get("/getTime").then(v => {
         const data = v.data
         console.log(data.code);
       })

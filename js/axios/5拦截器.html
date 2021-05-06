@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 添加请求拦截器
+    axios.interceptors.request.use(function (config) {
+      console.log("请求拦截器 成功1");
+      return config;
+    }, function (error) {
+      console.log("请求拦截器 失败1");
+      return Promise.reject(error);
+    });
+    axios.interceptors.request.use(function (config) {
+      console.log("请求拦截器 成功2");
+      return config;
+    }, function (error) {
+      console.log("请求拦截器 失败2");
+      return Promise.reject(error);
+    });
+    // 添加响应拦截器
+    axios.interceptors.response.use(function (response) {
+      console.log("响应拦截器 成功1");
+      return response;
+    }, function (error) {
+      console.log("响应拦截器 失败1");
+      return Promise.reject(error);
+    });
+    axios.interceptors.response.use(function (response) {
+      console.log("响应拦截器 成功2");
+      return response.data;
+    }, function (error) {
+      console.log("响应拦截器 失败2");
+      return Promise.reject(error);
+    });
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/posts"
+    }).then((v) => {
+      console.log(v);
+    }).catch((reason) => {
+      console.log("失败");
+    })
+  </script>
+</body>
+
+</html>
