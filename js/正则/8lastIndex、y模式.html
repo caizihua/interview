@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = "abcd123";
+      console.log(str.match(/\w/g));
+      let reg = /\w/g,
+        res = null;
+      //能循环是因为，reg中有lastIndex属性，每调用一次exec就会将Index属性+1，再调用时值将会是下一个
+      //lastIndex属性只有在全局修饰符g下来能实现自增
+      while ((res = reg.exec(str))) {
+        console.log(res);
+        console.log(reg.lastIndex);
+      }
+      console.log("-------------------------------------y模式");
+      //y模式不会跳过不匹配项，而是每项都比较
+      let reg1 = /ab/y;
+      console.log(reg1.lastIndex);
+      console.log(reg1.exec(str));
+      console.log(reg1.lastIndex);
+      console.log(reg1.exec(str));
+      console.log("-------------------------------------y模式实例");
+      let str1 = "abcd1234,5678,4321";
+      let reg2 = /(\d+),?/y;
+      reg2.lastIndex = 4;
+      let result = [];
+      while ((item = reg2.exec(str1))) result.push(item[1]);
+      console.log(result);
+    </script>
+  </body>
+</html>

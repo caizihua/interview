@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="user" />
+    <script>
+      let str = "abcd123";
+      console.log(str.match(/(ab)/));
+      console.log(str.match(/[ab]/));
+
+      let date = "2021-5-7";
+      //原子组使用()，后面如果还要使用可以\1，\2等形式，1,2表示原子组出现的顺序
+      console.log(date.match(/^\d{4}([\/-])\d{1,2}\1\d{1,2}$/));
+      console.log("-------------------------------------区间匹配");
+      console.log(str.match(/[a-z]+/g));
+      let username = document
+        .querySelector("[name='user']")
+        .addEventListener("keyup", function () {
+          console.log(this.value.match(/^[a-z]\w{3,6}$/i));
+        });
+      console.log("-------------------------------------排除匹配");
+      let tel = "jack:1234,rose:12333.+()";
+      console.log(tel.match(/[^\d\-,:\.\+\(\)]+/g));
+      console.log("-------------------------------------[]字符不解析");
+      //.+在原子表[]中就表示的普通字符，不在[]就会表示相应的含义
+      console.log(tel.match(/.+/gi));
+      console.log(tel.match(/[.+]/gi));
+      //同理()也是
+      console.log(tel.match(/()/gi));
+      console.log(tel.match(/[()]/gi));
+      console.log("-------------------------------------[]匹配所有内容");
+      let string = `
+        abcd
+        1234
+        `;
+      console.log(string.match(/.+/gs));
+      console.log(string.match(/[\s\S]+/));
+    </script>
+  </body>
+</html>

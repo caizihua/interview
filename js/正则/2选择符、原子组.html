@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      let str = "rose1234";
+      console.log(/u|@/.test(str));
+
+      let tel = "^010-0123456789$";
+      console.log(/(010|020)\-\d{7,8}/.test(tel));
+      /* --------------------原子表-------------------- */
+      //[]表示集合，每个字符之间就使用了|隔开，所以不需要自己添加|
+      console.log(str.match(/[1-3]/));
+      /* --------------------原子组-------------------- */
+      //()内是一个整体，需要整体出现
+      console.log(str.match(/(12|34)/));
+    </script>
+  </body>
+</html>

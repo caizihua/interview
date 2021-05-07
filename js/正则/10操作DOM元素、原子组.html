@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1>abcd</h1>
+      <h2>hij</h2>
+      <span>efg</span>
+    </div>
+
+    <script>
+      let div = document.querySelector("div");
+      let reg = /<(h[1-6])>[\s\S]+<\/\1>/gi;
+      div.innerHTML = div.innerHTML.replace(reg, "");
+      console.log("-------------------------------------原子组");
+      let str = `
+      <h1>abcd123abc</h1>
+      <span>efg</span>
+      <h2>hij</h2>
+      `;
+      //使用i模式后，数组0位就是匹配到的结果，数组1位之后就是原子组
+      console.dir(str.match(/<(h[1-6])>[\s\S]*<\/\1>/i));
+    </script>
+  </body>
+</html>

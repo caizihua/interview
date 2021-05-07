@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = "abcd，一二三四!";
+      //匹配所有字符
+      console.log(str.match(/\p{L}/gu));
+      //匹配标点
+      console.log(str.match(/\p{P}/gu));
+      //匹配汉字
+      console.log(str.match(/\p{sc=Han}/gu));
+    </script>
+  </body>
+</html>

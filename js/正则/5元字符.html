@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="user" />
+    <p></p>
+    <script>
+      let str = "ab12cd$_1234";
+      console.log("-------------------------------------\\w、\\W");
+      // \w包括下划线
+      console.log(str.match(/\w+/g));
+      console.log(str.match(/\W+/g));
+
+      let email = "123456@qq.com";
+      console.log(email.match(/^\w+@\w+\.\w+$/));
+
+      let username = document
+        .querySelector("[name='user']")
+        .addEventListener("keyup", function () {
+          let res = /^[a-z]\w{4,9}$/.test(this.value);
+          document.querySelector("p").innerHTML = res ? "正确" : "错误";
+        });
+      console.log();
+      console.log("-------------------------------------.");
+      let str1 = `
+      abcd1234
+      5&%*$._-
+      `;
+      console.log(str1.match(/.+/s)[0]);
+
+      let str2 = `010 - 123456`;
+      console.log(/\d+\s-\s\d{6}/.test(str2));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="user" />
+    <p></p>
+    <script>
+      let price = 12.12;
+      //.点表示除换行外任意字符，如果需要表示.那么需要转义
+      console.log(/\d+\.\d+/.test(price));
+      //reg对象中的斜杠也要转义，因为接受的是字符串，而字符串的\d表示的就是d这个字符
+      console.log("\d+\.\d+");
+      let reg = new RegExp("\\d+\\.\\d+");
+      console.log(reg.test(price));
+      let url = "https://localhost:3000";
+      console.log(/https?:\/\/\w+:\d+/.test(url));
+      /* --------------------边界约束-------------------- */
+      let str = "abcd1111";
+      //^限定起始边界&限定结尾边界
+      console.log(/^\w+\d+$/.test(str));
+      document
+        .querySelector("[name='user']")
+        .addEventListener("keyup", function () {
+          let res = this.value.match(/^[a-z]{3,6}$/);
+          document.querySelector("p").innerHTML = res ? "正确" : "错误";
+        });
+    </script>
+  </body>
+</html>

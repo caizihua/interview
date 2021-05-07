@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = `<span>
+    123
+    ^&*
+    asd
+    </span>
+    `;
+      console.log(str.match(/<span>[\d\D]+<\/span>/));
+      // 模式修正符
+      let str1 = "abcDaA123";
+      console.log(str1);
+      console.log(str1.match(/a/gi));
+
+      console.log(str1.replace(/a/gi, "v"));
+
+      let key = null,
+        value = null;
+      let str2 = `
+      name : jack,
+      age : 18,
+      hobbies : basketball
+      `;
+      let str3 = str2.match(/^\s*\w+\s:\s.+$/gm).map((v) => {
+        v = v.replace(/\s*/, "").replace(/,/g, "");
+        [key, value] = v.split(" : ");
+        return { key, value };
+      });
+      console.log(JSON.stringify());
+    </script>
+  </body>
+</html>
