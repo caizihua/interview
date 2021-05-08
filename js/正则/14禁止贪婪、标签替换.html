@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <span>123123</span>
+      <span>456123</span>
+      <span>123456</span>
+    </div>
+    <script>
+      let str = "abcdabbbb1234";
+      //在有范围限定中，正则都是贪婪匹配，如果需要禁止，在范围后添加?
+      let reg = [/ab*?/, /ab??/, /ab+?/, /ab{2,}?/];
+      reg.map((v) => {
+        console.dir(str.match(v));
+      });
+
+      console.log("-------------------------------------标签替换");
+      const reg1 = /<span>([\s\S]+?)<\/span>/gi;
+      var div = document.querySelector("div");
+      div.innerHTML = div.innerHTML.replace(reg1, (v, p1) => {
+        return `<h4 style="color:red">abcd-${p1}</h4>`;
+      });
+      console.log("-------------------------------------matchAll");
+      let reg2 = /<h4 style="color:red">([\s\S]+?)<\/h4>/gi;
+      const res = div.innerHTML.matchAll(reg2);
+      let contents = [];
+      for (const iterator of res) {
+        contents.push(iterator[1]);
+      }
+      console.table(contents);
+      console.log("-------------------------------------手写matchAll");
+      String.prototype.matchAll = function (reg) {
+        let res = this.match(reg);
+        if (res) {
+          let str = this.replace(res[0], "^".repeat(res[0].length));
+          let match = str.matchAll(reg) || [];
+          return [res, ...match];
+        }
+      };
+      let str1 = "abcdabcd123";
+      console.log(str.matchAll(/a/i));
+    </script>
+  </body>
+</html>

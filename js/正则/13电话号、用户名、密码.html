@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="username" id="" />
+    <p></p>
+    <input type="text" name="password" id="" />
+    <p></p>
+
+    <script>
+      let tel = "010-12345678";
+      console.log(tel.match(/^0\d{2,3}-\d{7,8}$/));
+      console.log("-------------------------------------用户名");
+      document
+        .querySelector("[name='username']")
+        .addEventListener("keyup", function (e) {
+          const value1 = e.target.value;
+          let reg1 = /^[a-z][\w-]{2,7}$/i;
+          document.querySelectorAll("p")[0].innerHTML = reg1.test(value1);
+        });
+      console.log("-------------------------------------密码");
+      document
+        .querySelector("[name='password']")
+        .addEventListener("keyup", function (e) {
+          const value2 = e.target.value;
+          let reg2 = [/^[a-z0-9]{5,10}$/i, /[A-Z]/, /[0-9]/];
+          document.querySelectorAll("p")[1].innerHTML = reg2.every((v) =>
+            v.test(value2)
+          );
+        });
+    </script>
+  </body>
+</html>

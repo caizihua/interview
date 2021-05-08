@@ -16,6 +16,16 @@
         let reg = /^[\w-]+@([\w-]+\.)+(com|org|cc|net|cn)$/i;
         document.querySelector("p").innerHTML = reg.test(this.value);
       });
+      console.log("-------------------------------------标签替换");
+      let str = `
+      <h1>abcd</h1>
+      <h2>hij</h2>
+      <span>efg</span>
+      `;
+      let reg1 = /<(h[1-6])>([\s\S]+)<\/\1>/gi;
+      // console.log(str.replace(reg1, `<p>$2</p>`));
+      let res = str.replace(reg1, (p0, p1, p2) => `<p>${p2}</p>`);
+      console.log(res);
     </script>
   </body>
 </html>

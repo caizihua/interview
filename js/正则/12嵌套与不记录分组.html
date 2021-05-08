@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let url = `
+      https://www.baidu.com
+      http://bing.com
+      http://localhost:3000
+      `;
+      //?:表示不记录这个括号的原子组，这样就不会显示在返回的数组中
+      let reg = /https?:\/\/((?:\w+\.)?\w+(?:(?:\.com|org|cn)|:\S+))/gi;
+      // console.dir(url.match(reg));
+      let urls = [];
+      while ((res = reg.exec(url))) {
+        urls.push(res[1]);
+      }
+      console.log(urls);
+    </script>
+  </body>
+</html>
