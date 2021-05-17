@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //实现const
+    // defineProperty接受三个参数(obj, prop, desc);
+    function _const(key, value) {
+      const desc = {
+        value,
+        writable: false,
+      };
+      Object.defineProperty(window, key, desc);
+    }
+
+    _const("obj", {
+      name: "rose",
+      age: "18"
+    });
+
+    console.log(obj);
+    console.log(typeof (obj));
+  </script>
+</body>
+
+</html>
