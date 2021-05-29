@@ -12,8 +12,10 @@
   <!-- 防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
              或者说是如果高频事件一直被触发，那么在停止后一定时间内执行某函数 -->
   <!-- 节流：高频事件触发时，n秒内只会执行一次，所以会稀释函数的执行频率 -->
-  <input type="text" name="" id="inp">
-  <button id="but">提交</button>
+  <form action="">
+    <input type="text" name="" id="inp">
+    <input type="button" id="but" value="提交"></input>
+  </form>
   <script>
     var inp = document.querySelector("#inp")
     var but = document.querySelector("#but")
