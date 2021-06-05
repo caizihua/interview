@@ -1,10 +1,10 @@
 //检测左边实例对象上的原型链中是否有右边构造函数的原型
 function _instanceof(L, R) {
   let [X, Y] = [Object.getPrototypeOf(L), R.prototype];
-  let Z = Object.getPrototypeOf(Y);
+  let Z = Object.getPrototypeOf(X);
   while (true) {
     if (X === null || Y === null) return false;
-    if (X === Y || X === Z) {
+    if (X === Y || Z === Y) {
       return true;
     } else {
       return false;
@@ -23,4 +23,6 @@ let x = [1, 2, 3, 4];
 console.log(_instanceof(o, C));
 console.log(_instanceof(o, Object));
 console.log(_instanceof(o, D));
-console.log(x instanceof D);
+console.log(_instanceof(o, Object));
+console.log(x instanceof Object);
+console.log(_instanceof(x, Object));
