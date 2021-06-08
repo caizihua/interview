@@ -16,13 +16,20 @@
   <button>DELETE</button>
   <script>
     const btn = document.querySelectorAll("button");
-    btn[0].onclick = function () {
+    /* btn[0].onclick = function () {
       axios({
         method: "GET",
         url: "http://localhost:3000/posts/2"
       }).then((v) => {
         console.log(v);
       })
+    } */
+    btn[0].onclick = async function () {
+      const res = await axios({
+        method: "GET",
+        url: "http://localhost:3000/posts/2"
+      })
+      console.log(res);
     }
     btn[1].onclick = function () {
       axios({
