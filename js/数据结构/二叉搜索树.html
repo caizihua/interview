@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Node(data, left, right) {
+      this.data = data;
+      this.left = left;
+      this.right = right;
+    }
+
+    Node.prototype = {
+      show: function () {
+        console.log(this.data);
+      }
+    }
+
+    function Tree() {
+      this.root = null;
+    }
+
+    Tree.prototype = {
+      insert: function (data) {
+        var node = new Node(data, null, null);
+        if (!this.root) {
+          this.root = node;
+          return;
+        }
+        var current = this.root;
+        var parent = null;
+        while (current) {
+          parent = current;
+          if (data < parent.data) {
+            current = current.left;
+            if (!current) {
+              parent.left = node;
+              return;
+            }
+          } else {
+            current = current.right;
+            if (!current) {
+              parent.right = node;
+              return;
+            }
+          }
+        }
+      },
+    }
+  </script>
+</body>
+
+</html>
