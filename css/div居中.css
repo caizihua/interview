@@ -14,88 +14,105 @@
   font-size: 10px;
 }
 
-.fontStyle {
+.Style {
   text-align: center;
+  background: yellow;
+}
+
+.Size {
+  width: 50px;
+  height: 50px;
 }
 
 .horizontal1 {
   position: absolute;
   left: 50%;
-  top: 50%;
   margin-left: -25px;
-  margin-top: -25px;
-  width: 50px;
-  height: 50px;
-  background: yellow;
+  /* -0.5*width */
   z-index: -1;
 }
 
 .horizontal2 {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: 50px;
-  height: 50px;
-  background: yellow;
   z-index: -1;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, 0, 0);
 }
 
 .horizontal3 {
   position: absolute;
   left: 50%;
-  top: 50%;
-  background: yellow;
   z-index: -1;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, 0, 0);
 }
 
-.divFlex {
+.flexHorizontal {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.horizontal4 {
-  background: yellow;
-  width: 50px;
-  height: 50px;
+
+.horizontal5 {
+  margin: 0 auto;
 }
 
+.horizontal6 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/* -------垂直居中------- */
 .vertical1 {
   position: absolute;
-  left: 50%;
   top: 50%;
-  margin-left: -25px;
   margin-top: -25px;
-  width: 50px;
-  height: 50px;
-  background: yellow;
   z-index: -1;
 }
 
 .vertical2 {
   position: absolute;
-  left: 50%;
   top: 50%;
-  width: 50px;
-  height: 50px;
-  background: yellow;
   z-index: -1;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(0, -50%, 0);
 }
 
 .vertical3 {
   position: absolute;
-  left: 50%;
   top: 50%;
-  background: yellow;
   z-index: -1;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(0, -50%, 0);
 }
 
-.vertical4 {
-  background: yellow;
-  width: 50px;
-  height: 50px;
+.flexVertical {
+  display: flex;
+  align-items: center;
+}
+
+.parent5::after,
+.vertical5 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.parent5::after {
+  content: '';
+  height: 100%;
+}
+
+.vertical6 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+.parent7 {
+  display: table;
+}
+
+.vertical7 {
+  display: table-cell;
+  vertical-align: middle;
 }
