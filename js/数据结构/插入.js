@@ -4,10 +4,10 @@ const insertionSort = function (arr) {
       let key = arr[i];
       let j = i - 1;
       while (j >= 0 && arr[j] > key) {
-        arr[j + 1] = arr[j];
-        j--;
+        arr[j + 1] = arr[j]; /* 条件成立，往后挪一位 */
+        j--; /* 继续往前寻找 */
       }
-      arr[j + 1] = key;
+      arr[j + 1] = key; /* 查找完毕插入 */
     }
     return arr;
   } else {
