@@ -14,6 +14,7 @@
   <p id="p"></p>
   <script>
     const Vue = (function () {
+      /* 消息管理员dep */
       let uid = 0;
       class Dep {
         constructor() {
@@ -29,7 +30,7 @@
           this.subs.push(sub);
         }
         notify() {
-          //通知更新视图
+          //通知更新数据
           this.subs.forEach(sub => sub.update());
         }
       }
