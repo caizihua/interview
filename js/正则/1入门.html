@@ -17,9 +17,9 @@
     //1
     //传统形式替换
     let num = [...str].filter((a) => !Number.isNaN(parseInt(a)));
-    console.log(num.join(""));
+    console.log(num.join(" "));
     //正则表达式替换
-    console.log(str.match(/\d/g).join(""));
+    console.log(str.match(/\d/g).join(" "));
 
     //2
     //字面量形式创建

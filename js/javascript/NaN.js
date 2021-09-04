@@ -8,8 +8,9 @@ console.log("---------");
 console.log(isNaN(NaN));
 console.log(isNaN(undefined));
 console.log(isNaN(1));
-/* 对于isNaN，表示的意思是只要不是数字都是true */
+/* 对于isNaN，只要不是数字都是true */
 console.log("---------");
 console.log(Number.isNaN(NaN));
 console.log(Number.isNaN(undefined));
 console.log(Number.isNaN(1));
+/* 对于Number.isNaN，会判断传入的参数是否为数字，如果为数字再判断是否为NaN */
