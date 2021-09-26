@@ -1,5 +1,7 @@
 // 将一个多维数组变成一维数组就是数组扁平化
-const res = [1, 2, [3, 4], [5, [6, 7, [8]]]];
+const res = [1, 2, [3, 4],
+  [5, [6, 7, [8]]]
+];
 
 //1.flat():按照指定的深度遍历数组，返回一个合并的新数组，不会改变原数组
 const res1 = res.flat(Infinity);
@@ -27,3 +29,12 @@ const fn = (arr) => {
   }
 };
 fn(res);
+
+//5 ES6解构运算符
+function fnFlat(arr) {
+  while (arr.some(item => Array.isArray(item))) {
+    arr = [].concat(...arr);
+  }
+  return arr;
+}
+console.log(fnFlat(res));
