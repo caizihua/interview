@@ -9,9 +9,9 @@
 </head>
 
 <body>
-  <!-- 防抖：触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
-             或者说是如果高频事件一直被触发，那么在停止后一定时间内执行某函数 -->
-  <!-- 节流：高频事件触发时，n秒内只会执行一次，所以会稀释函数的执行频率 -->
+  <!-- 防抖：触发高频事件后n毫秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+             或者说是如果高频事件一直被触发，那么在停止后n毫秒内执行指定函数 -->
+  <!-- 节流：高频事件触发时，n毫秒内只会执行一次，所以会稀释函数的执行频率 -->
   <form action="">
     <input type="text" name="" id="inp">
     <input type="button" id="but" value="提交"></input>
@@ -19,37 +19,36 @@
   <script>
     var inp = document.querySelector("#inp")
     var but = document.querySelector("#but")
-    /* 实现原理
-    如果高频事件一直触发，并且定时器重新计时，那么可以直接重新定义定时器。
-    首先需要知道的是定时器的返回值，返回的是一个正整数，这个值可以通过clearTimeout来取消。
-    那么如果高频事件一直触发的话，那么返回的函数将会一直清除定时器，并重新定义定时器。
+    /* 防抖实现原理
+    定时器的返回值是一个正整数，可以通过clearTimeout来取消。
+    如果高频事件一直触发，那么返回的函数将一直清除定时器，并重新定义定时器。
     直到停止，并在规定时间后调用函数。
     */
-    function debounce(fn) {
+    function debounce(fn, time) {
       let timeout = null;
       return function () {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
           fn.apply(this, arguments)
-        }, 500);
+        }, time);
       }
     }
-    /* 实现原理：
+    /* 节流实现原理：
     首先我们需要一个标志canRun来保证在我们设置的这段时间内函数不会触发。
     最开始设置为true，表示需要调用定时器，为false时就不需要调用定时器。
     当为true时，跳过判断函数，接着设置为false，执行定时器函数，
     在这段时间内canRun都将是false，判断函数将生效，不能调用函数。
     当定时器失效后，调用回调函数，重新设置值canRun为true表示需要调用定时器
     */
-    function throttle(fn) {
+    function throttle(fn, time) {
       let canRun = true;
       return function () {
         if (!canRun) return;
         canRun = false;
         setTimeout(() => {
-          fn.apply(this, arguments);
           canRun = true;
-        }, 1000);
+          fn.apply(this, arguments);
+        }, time);
       }
     }
 
@@ -60,8 +59,8 @@
     function throttleSuc() {
       console.log("节流成功");
     }
-    but.addEventListener("click", debounce(debounceSuc))
-    inp.addEventListener("input", throttle(throttleSuc))
+    but.addEventListener("click", debounce(debounceSuc, 500))
+    inp.addEventListener("inpu  t", throttle(throttleSuc, 500))
   </script>
 </body>
 

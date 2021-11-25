@@ -29,6 +29,7 @@ const fn = (arr) => {
   }
 };
 fn(res);
+// console.log(res5);
 
 //5 ES6解构运算符
 function fnFlat(arr) {
@@ -37,4 +38,4 @@ function fnFlat(arr) {
   }
   return arr;
 }
-console.log(fnFlat(res));
+// console.log(fnFlat(res));

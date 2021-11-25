@@ -25,4 +25,4 @@ console.log(Object.getPrototypeOf(jack) === Person.prototype);
 于是现在的obj是一个新对象，带着原型和属性
 将this指向新对象，并执行函数
 判断返回对象：如果ret是个对象那么返回ret，如果不是那么返回this:这个我们创建的对象
-*/
+*/ 

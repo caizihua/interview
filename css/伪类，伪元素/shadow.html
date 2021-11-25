@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 400px;
+      border-radius: 10px;
+    }
+
+    .div1 {
+      padding: 1rem;
+      background-color: #fff;
+      transition: 0.2s;
+    }
+
+    .div1:hover {
+      box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.3);
+
+    }
+
+    .div2 {
+      position: relative;
+      padding: 1rem;
+      background-color: #fff;
+
+    }
+
+    .div2:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: .2s;
+      border-radius: 10px;
+    }
+
+    .div2:hover::after {
+      opacity: 1;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="div1">
+      <h1>Before</h1>
+      <p>使用box-shadow属性来实现阴影，重绘</p>
+    </div>
+    <br />
+    <div class="div2">
+      <h1>After</h1>
+      <p>添加::after伪元素来减少重绘</p>
+    </div>
+  </div>
+</body>
+
+</html>
